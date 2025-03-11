@@ -15,14 +15,16 @@ public class ProyectoBazarApplication {
 	}
 
 	@Configuration
-	public static class Myconfiguration{
+	public static class Myconfiguration {
 		@Bean
-		public WebMvcConfigurer corsConfigurer(){
+		public WebMvcConfigurer corsConfigurer() {
 			return new WebMvcConfigurer() {
 				@Override
 				public void addCorsMappings(CorsRegistry registry) {
 					registry.addMapping("/**")
-							.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
+							.allowedOrigins("*") // <-- ESTO FALTABA
+							.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH")
+							.allowedHeaders("*"); // <-- también recomendable
 				}
 			};
 		}
